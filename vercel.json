@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "h20_api-v4-postgres-nest-w-relations",
+  "name": "h21-api-v4-postgres-nest-v2",
   "builds": [
     { "src": "src/main.ts", "use": "@vercel/node" }
   ],
