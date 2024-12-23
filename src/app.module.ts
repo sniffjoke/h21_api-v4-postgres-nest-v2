@@ -15,8 +15,6 @@ import  { TypeOrmConfigService } from './core/settings/database.config';
 import { MailSendModule } from './core/settings/mailer.module';
 import configuration, { validate } from './core/settings/env/configuration';
 
-// console.log('.' + (process.env.ENV as string).toLowerCase() + '.env');
-
 @Module({
   imports: [
     CqrsModule.forRoot(),

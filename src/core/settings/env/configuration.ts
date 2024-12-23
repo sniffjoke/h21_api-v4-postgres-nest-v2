@@ -3,6 +3,7 @@ import { EnvironmentSettings } from "./env-settings";
 import { ApiSettings } from "./api-settings";
 import { DatabaseSettings } from "./database-settings";
 import { MailerSettings } from "./mailer-settings";
+import * as process from 'node:process';
 
 export type EnvironmentVariable = { [key: string]: string };
 export type ConfigurationType = Configuration;
