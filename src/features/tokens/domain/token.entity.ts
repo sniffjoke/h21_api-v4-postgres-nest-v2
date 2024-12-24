@@ -1,4 +1,5 @@
-    import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+    import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+    import { UserEntity } from '../../users/domain/user.entity';
 
 
 @Entity('tokens')
@@ -19,5 +20,9 @@ export class TokenEntity {
 
     @Column()
     blackList: boolean;
+
+    @ManyToOne(() => UserEntity, {onDelete: 'CASCADE'})
+    @JoinColumn()
+    user: UserEntity;
 
 }

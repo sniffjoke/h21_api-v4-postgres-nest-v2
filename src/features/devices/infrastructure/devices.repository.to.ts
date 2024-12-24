@@ -22,9 +22,9 @@ export class DevicesRepositoryTO {
     const findedDevice = await this.dRepository.findOne(
       { where: { userId: filter.userId, ip: filter.ip, title: filter.title } },
     );
-    if (!findedDevice) {
-      throw new NotFoundException('Device not found');
-    }
+    // if (!findedDevice) {
+    //   throw new NotFoundException('Device not found');
+    // }
     return findedDevice;
   }
 
