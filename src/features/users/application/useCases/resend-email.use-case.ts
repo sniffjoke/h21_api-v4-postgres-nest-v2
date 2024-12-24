@@ -5,6 +5,7 @@ import { UsersRepository } from '../../infrastructure/users.repository';
 import { UsersService } from '../users.service';
 import { ConfigService } from '@nestjs/config';
 import { ConfigurationType } from '../../../../core/settings/env/configuration';
+import { UsersRepositoryTO } from '../../infrastructure/users.repository.to';
 
 
 export class ResendEmailCommand {
@@ -19,7 +20,7 @@ export class ResendEmailCommand {
 export class ResendEmailUseCase
   implements ICommandHandler<ResendEmailCommand> {
   constructor(
-    private readonly usersRepository: UsersRepository,
+    private readonly usersRepository: UsersRepositoryTO,
     private readonly usersService: UsersService,
     private configService: ConfigService<ConfigurationType, true>
   ) {
@@ -31,7 +32,8 @@ export class ResendEmailUseCase
       infer: true,
     });
     const isUserExists = await this.usersRepository.findUserByEmail(command.email);
-    if (isUserExists.isConfirm) {
+    const emailInfo = await this.usersRepository.findEmailInfoByUserId(isUserExists.id)
+    if (emailInfo.isConfirm) {
       throw new BadRequestException('Email already activate')
     }
     const emailConfirmation: EmailConfirmationModel = this.usersService.createEmailConfirmation(false);

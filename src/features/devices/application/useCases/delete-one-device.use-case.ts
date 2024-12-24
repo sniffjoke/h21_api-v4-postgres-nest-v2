@@ -1,8 +1,8 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { ForbiddenException, UnauthorizedException } from '@nestjs/common';
 import { TokensService } from '../../../tokens/application/tokens.service';
-import { DevicesRepository } from '../../infrastructure/devices.repository';
-import { TokensRepository } from '../../../tokens/infrastructure/tokens.repository';
+import { TokensRepositoryTO } from '../../../tokens/infrastructure/tokens.repository.to';
+import { DevicesRepositoryTO } from '../../infrastructure/devices.repository.to';
 
 export class DeleteOneDeviceCommand {
   constructor(
@@ -18,8 +18,8 @@ export class DeleteOneDeviceUseCase
   implements ICommandHandler<DeleteOneDeviceCommand> {
   constructor(
     private readonly tokensService: TokensService,
-    private readonly devicesRepository: DevicesRepository,
-    private readonly tokensRepository: TokensRepository
+    private readonly devicesRepository: DevicesRepositoryTO,
+    private readonly tokensRepository: TokensRepositoryTO
   ) {
 
   }

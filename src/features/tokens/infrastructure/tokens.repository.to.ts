@@ -5,7 +5,7 @@ import { TokenEntity } from '../domain/token.entity';
 
 
 @Injectable()
-export class TokensRepository {
+export class TokensRepositoryTO {
   constructor(
     @InjectRepository(TokenEntity) private readonly tRepository: Repository<TokenEntity>,
   ) {

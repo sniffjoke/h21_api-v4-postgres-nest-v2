@@ -13,13 +13,13 @@ export class DeleteUserCommand {
 export class DeleteUserUseCase
   implements ICommandHandler<DeleteUserCommand> {
   constructor(
-    private readonly usersRepositoryTO: UsersRepositoryTO
+    private readonly usersRepository: UsersRepositoryTO
   ) {
 
   }
 
   async execute(command: DeleteUserCommand) {
-    const deleteUser = await this.usersRepositoryTO.deleteUserById(command.id);
+    const deleteUser = await this.usersRepository.deleteUserById(command.id);
     return deleteUser;
   }
 }

@@ -1,9 +1,9 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { TokensService } from '../../../tokens/application/tokens.service';
-import { DevicesRepository } from '../../infrastructure/devices.repository';
-import { TokensRepository } from '../../../tokens/infrastructure/tokens.repository';
-import { UsersRepository } from '../../../users/infrastructure/users.repository';
+import { DevicesRepositoryTO } from '../../infrastructure/devices.repository.to';
+import { TokensRepositoryTO } from '../../../tokens/infrastructure/tokens.repository.to';
+import { UsersRepositoryTO } from '../../../users/infrastructure/users.repository.to';
 
 export class DeleteAllDevicesCommand {
   constructor(
@@ -18,9 +18,9 @@ export class DeleteAllDevicesUseCase
   implements ICommandHandler<DeleteAllDevicesCommand> {
   constructor(
     private readonly tokensService: TokensService,
-    private readonly devicesRepository: DevicesRepository,
-    private readonly tokensRepository: TokensRepository,
-    private readonly usersRepository: UsersRepository,
+    private readonly devicesRepository: DevicesRepositoryTO,
+    private readonly tokensRepository: TokensRepositoryTO,
+    private readonly usersRepository: UsersRepositoryTO,
   ) {
 
   }

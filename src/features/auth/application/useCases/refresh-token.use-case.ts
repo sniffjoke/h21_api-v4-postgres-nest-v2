@@ -1,8 +1,8 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { TokensService } from '../../../tokens/application/tokens.service';
 import { UnauthorizedException } from '@nestjs/common';
-import { TokensRepository } from '../../../tokens/infrastructure/tokens.repository';
-import { DevicesRepository } from '../../../devices/infrastructure/devices.repository';
+import { DevicesRepositoryTO } from '../../../devices/infrastructure/devices.repository.to';
+import { TokensRepositoryTO } from '../../../tokens/infrastructure/tokens.repository.to';
 
 
 export class RefreshTokenCommand {
@@ -18,8 +18,8 @@ export class RefreshTokenUseCase
   implements ICommandHandler<RefreshTokenCommand> {
   constructor(
     private readonly tokensService: TokensService,
-    private readonly tokensRepository: TokensRepository,
-    private readonly devicesRepository: DevicesRepository,
+    private readonly tokensRepository: TokensRepositoryTO,
+    private readonly devicesRepository: DevicesRepositoryTO,
   ) {
 
   }

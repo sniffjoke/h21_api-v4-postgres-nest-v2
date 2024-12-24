@@ -3,6 +3,8 @@ import { UnauthorizedException } from '@nestjs/common';
 import { UsersRepository } from '../../../users/infrastructure/users.repository';
 import { TokensService } from '../../../tokens/application/tokens.service';
 import { DevicesRepository } from '../../infrastructure/devices.repository';
+import { UsersRepositoryTO } from '../../../users/infrastructure/users.repository.to';
+import { DevicesRepositoryTO } from '../../infrastructure/devices.repository.to';
 
 export class GetDevicesCommand {
   constructor(
@@ -16,9 +18,9 @@ export class GetDevicesCommand {
 export class GetDevicesUseCase
   implements ICommandHandler<GetDevicesCommand> {
   constructor(
-    private readonly usersRepository: UsersRepository,
+    private readonly usersRepository: UsersRepositoryTO,
     private readonly tokensService: TokensService,
-    private readonly devicesRepository: DevicesRepository,
+    private readonly devicesRepository: DevicesRepositoryTO,
   ) {
 
   }

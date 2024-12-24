@@ -1,8 +1,8 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { UnauthorizedException } from '@nestjs/common';
 import { TokensService } from '../../../tokens/application/tokens.service';
-import { TokensRepository } from '../../../tokens/infrastructure/tokens.repository';
-import { DevicesRepository } from '../../../devices/infrastructure/devices.repository';
+import { TokensRepositoryTO } from '../../../tokens/infrastructure/tokens.repository.to';
+import { DevicesRepositoryTO } from '../../../devices/infrastructure/devices.repository.to';
 
 
 export class LogoutCommand {
@@ -18,8 +18,8 @@ export class LogoutUseCase
   implements ICommandHandler<LogoutCommand> {
   constructor(
     private readonly tokensService: TokensService,
-    private readonly tokensRepository: TokensRepository,
-    private readonly devicesRepository: DevicesRepository,
+    private readonly tokensRepository: TokensRepositoryTO,
+    private readonly devicesRepository: DevicesRepositoryTO,
   ) {
 
   }

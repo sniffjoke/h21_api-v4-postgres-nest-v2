@@ -22,20 +22,20 @@ import { UsersQueryRepositoryTO } from './infrastructure/users.query-repositorie
   providers: [
     UsersService,
     UsersRepository,
-    UsersRepositoryTO,
     UsersQueryRepository,
+    UsersRepositoryTO,
     UsersQueryRepositoryTO,
-    ...UsersCommandHandlers
+    ...UsersCommandHandlers,
   ],
   exports: [
     CryptoModule,
     UuidModule,
     UsersService,
     UsersRepository,
-    UsersRepositoryTO,
     UsersQueryRepository,
+    UsersRepositoryTO,
     UsersQueryRepositoryTO,
-    ...UsersCommandHandlers
+    ...UsersCommandHandlers,
   ],
 })
 export class UsersModule {

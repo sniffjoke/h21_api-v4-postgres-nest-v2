@@ -1,12 +1,12 @@
 import { LoginDto } from '../../api/models/input/auth.input.model';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { UsersRepository } from '../../../users/infrastructure/users.repository';
 import { CryptoService } from '../../../../core/modules/crypto/application/crypto.service';
 import { UnauthorizedException } from '@nestjs/common';
-import { DevicesRepository } from '../../../devices/infrastructure/devices.repository';
 import { UuidService } from 'nestjs-uuid';
 import { TokensService } from '../../../tokens/application/tokens.service';
-import { TokensRepository } from '../../../tokens/infrastructure/tokens.repository';
+import { UsersRepositoryTO } from '../../../users/infrastructure/users.repository.to';
+import { DevicesRepositoryTO } from '../../../devices/infrastructure/devices.repository.to';
+import { TokensRepositoryTO } from '../../../tokens/infrastructure/tokens.repository.to';
 
 export class LoginCommand {
   constructor(
@@ -22,12 +22,12 @@ export class LoginCommand {
 export class LoginUseCase
   implements ICommandHandler<LoginCommand> {
   constructor(
-    private readonly usersRepository: UsersRepository,
+    private readonly usersRepository: UsersRepositoryTO,
     private readonly cryptoService: CryptoService,
-    private readonly devicesRepository: DevicesRepository,
+    private readonly devicesRepository: DevicesRepositoryTO,
     private readonly uuidService: UuidService,
     private readonly tokensService: TokensService,
-    private readonly tokensRepository: TokensRepository
+    private readonly tokensRepository: TokensRepositoryTO
   ) {
 
   }

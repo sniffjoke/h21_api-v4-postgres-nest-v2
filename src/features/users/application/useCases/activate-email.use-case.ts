@@ -1,6 +1,6 @@
 import { BadRequestException } from '@nestjs/common';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { UsersRepository } from '../../infrastructure/users.repository';
+import { UsersRepositoryTO } from '../../infrastructure/users.repository.to';
 
 export class ActivateEmailCommand {
   constructor(
@@ -14,7 +14,7 @@ export class ActivateEmailCommand {
 export class ActivateEmailUseCase
   implements ICommandHandler<ActivateEmailCommand> {
   constructor(
-    private readonly usersRepository: UsersRepository,
+    private readonly usersRepository: UsersRepositoryTO,
   ) {
 
   }
@@ -25,7 +25,7 @@ export class ActivateEmailUseCase
       throw new BadRequestException('Code already activate');
     }
     const updateUserInfo = await this.usersRepository.updateUserByActivateEmail(
-      isUserExists.id,
+      isUserExists.userId,
     );
     return updateUserInfo;
   }

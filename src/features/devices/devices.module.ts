@@ -16,12 +16,10 @@ import { DeviceEntity } from './domain/devices.entity';
   ],
   controllers: [DevicesController],
   providers: [
-    DevicesRepository,
     DevicesRepositoryTO,
     ...DevicesCommandHandlers,
   ],
   exports: [
-    DevicesRepository,
     DevicesRepositoryTO,
     ...DevicesCommandHandlers,
   ],

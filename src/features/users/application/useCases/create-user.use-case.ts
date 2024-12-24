@@ -20,8 +20,7 @@ export class CreateUserCommand {
 export class CreateUserUseCase
   implements ICommandHandler<CreateUserCommand> {
   constructor(
-    private readonly usersRepository: UsersRepository,
-    private readonly usersRepositoryTO: UsersRepositoryTO,
+    private readonly usersRepository: UsersRepositoryTO,
     private readonly usersService: UsersService,
     private readonly cryptoService: CryptoService,
     private configService: ConfigService<ConfigurationType, true>
@@ -40,7 +39,7 @@ export class CreateUserUseCase
     }
     const hashPassword = await this.cryptoService.hashPassword(command.createUserDto.password);
     const newUserData = { ...command.createUserDto, password: hashPassword };
-    const userSave = await this.usersRepositoryTO.createUser(newUserData, emailConfirmationDto);
+    const userSave = await this.usersRepository.createUser(newUserData, emailConfirmationDto);
     return userSave.id;
   }
 }

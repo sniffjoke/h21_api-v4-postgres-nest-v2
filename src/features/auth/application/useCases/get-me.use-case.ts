@@ -1,7 +1,7 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { UsersRepository } from '../../../users/infrastructure/users.repository';
 import { TokensService } from '../../../tokens/application/tokens.service';
 import { UnauthorizedException } from '@nestjs/common';
+import { UsersRepositoryTO } from '../../../users/infrastructure/users.repository.to';
 
 export class GetMeCommand {
   constructor(
@@ -15,7 +15,7 @@ export class GetMeCommand {
 export class GetMeUseCase
   implements ICommandHandler<GetMeCommand> {
   constructor(
-    private readonly usersRepository: UsersRepository,
+    private readonly usersRepository: UsersRepositoryTO,
     private readonly tokensService: TokensService,
   ) {
 

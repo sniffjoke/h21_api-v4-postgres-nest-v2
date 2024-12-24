@@ -2,24 +2,25 @@ import { Module } from "@nestjs/common";
 import { TokensService } from "./application/tokens.service";
 import { JwtModule} from "@nestjs/jwt";
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TokensRepository } from './infrastructure/tokens.repository';
 import { UuidModule } from 'nestjs-uuid';
+import { TokensRepositoryTO } from './infrastructure/tokens.repository.to';
+import { TokenEntity } from './domain/token.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([]),
+    TypeOrmModule.forFeature([TokenEntity]),
     JwtModule.register({global: true}),
     UuidModule
   ],
   controllers: [],
   providers: [
     TokensService,
-    TokensRepository,
+    TokensRepositoryTO
   ],
   exports: [
     TokensService,
     JwtModule,
-    TokensRepository,
+    TokensRepositoryTO
   ]
 })
 export class TokensModule {}
