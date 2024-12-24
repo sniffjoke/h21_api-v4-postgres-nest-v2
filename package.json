@@ -8,11 +8,11 @@
   "scripts": {
     "build": "nest build --output public",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "cross-env ENV=DEVELOPMENT nest start",
+    "start": "nest start",
     "start:dev": "cross-env ENV=DEVELOPMENT nest start --watch",
     "start:test": "cross-env ENV=TEST nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "cross-env ENV=DEVELOPMENT node dist/main",
+    "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
