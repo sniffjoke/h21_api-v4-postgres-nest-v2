@@ -5,6 +5,7 @@ import { UsersRepository } from '../../infrastructure/users.repository';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { ConfigService } from '@nestjs/config';
 import { ConfigurationType } from '../../../../core/settings/env/configuration';
+import { UsersRepositoryTO } from '../../infrastructure/users.repository.to';
 
 export class CreateUserCommand {
   constructor(
@@ -20,6 +21,7 @@ export class CreateUserUseCase
   implements ICommandHandler<CreateUserCommand> {
   constructor(
     private readonly usersRepository: UsersRepository,
+    private readonly usersRepositoryTO: UsersRepositoryTO,
     private readonly usersService: UsersService,
     private readonly cryptoService: CryptoService,
     private configService: ConfigService<ConfigurationType, true>
@@ -38,7 +40,7 @@ export class CreateUserUseCase
     }
     const hashPassword = await this.cryptoService.hashPassword(command.createUserDto.password);
     const newUserData = { ...command.createUserDto, password: hashPassword };
-    const userSave = await this.usersRepository.createUser(newUserData, emailConfirmationDto);
+    const userSave = await this.usersRepositoryTO.createUser(newUserData, emailConfirmationDto);
     return userSave.id;
   }
 }

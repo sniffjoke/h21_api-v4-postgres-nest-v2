@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { InjectDataSource } from '@nestjs/typeorm';
-import { EmailConfirmationModel } from '../api/models/input/create-user.dto';
+import { CreateUserDto, EmailConfirmationModel } from '../api/models/input/create-user.dto';
 
 
 @Injectable()
@@ -11,7 +11,7 @@ export class UsersRepository {
   ) {
   }
 
-  async createUser(userData: any, emailConfirmation: EmailConfirmationModel) {
+  async createUser(userData: CreateUserDto, emailConfirmation: EmailConfirmationModel) {
     const result = await this.dataSource.query(
       `
                 INSERT INTO users ("login", "email", "password") 

@@ -7,10 +7,14 @@ import { UuidModule } from 'nestjs-uuid';
 import { CryptoModule } from '../../core/modules/crypto/crypto.module';
 import { UsersQueryRepository } from './infrastructure/users.query-repositories';
 import { UsersCommandHandlers } from './application/useCases';
+import { UserEntity } from './domain/user.entity';
+import { EmailConfirmationEntity } from './domain/email-confirmation.entity';
+import { UsersRepositoryTO } from './infrastructure/users.repository.to';
+import { UsersQueryRepositoryTO } from './infrastructure/users.query-repositories.to';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([]),
+    TypeOrmModule.forFeature([UserEntity, EmailConfirmationEntity]),
     CryptoModule,
     UuidModule,
   ],
@@ -18,7 +22,9 @@ import { UsersCommandHandlers } from './application/useCases';
   providers: [
     UsersService,
     UsersRepository,
+    UsersRepositoryTO,
     UsersQueryRepository,
+    UsersQueryRepositoryTO,
     ...UsersCommandHandlers
   ],
   exports: [
@@ -26,7 +32,9 @@ import { UsersCommandHandlers } from './application/useCases';
     UuidModule,
     UsersService,
     UsersRepository,
+    UsersRepositoryTO,
     UsersQueryRepository,
+    UsersQueryRepositoryTO,
     ...UsersCommandHandlers
   ],
 })
