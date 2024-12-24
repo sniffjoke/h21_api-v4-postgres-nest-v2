@@ -5,21 +5,26 @@ import { DevicesRepository } from './infrastructure/devices.repository';
 import { TokensModule } from '../tokens/tokens.module';
 import { UsersModule } from '../users/users.module';
 import { DevicesCommandHandlers } from './application/useCases';
+import { DevicesRepositoryTO } from './infrastructure/devices.repository.to';
+import { DeviceEntity } from './domain/devices.entity';
 
 @Module({
   imports: [
     UsersModule,
     TokensModule,
-    TypeOrmModule.forFeature([]),
+    TypeOrmModule.forFeature([DeviceEntity]),
   ],
   controllers: [DevicesController],
   providers: [
     DevicesRepository,
-    ...DevicesCommandHandlers
+    DevicesRepositoryTO,
+    ...DevicesCommandHandlers,
   ],
   exports: [
     DevicesRepository,
-    ...DevicesCommandHandlers
-  ]
+    DevicesRepositoryTO,
+    ...DevicesCommandHandlers,
+  ],
 })
-export class DevicesModule {}
+export class DevicesModule {
+}
