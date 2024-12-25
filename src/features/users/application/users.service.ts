@@ -19,6 +19,7 @@ export class UsersService {
   // Доменное событие
 
   public createEmailConfirmation(isConfirm: boolean) {
+    console.log('log: ', this.configService.get('mailerSettings', {infer: true}).SMTP_USER);
     const emailConfirmationNotConfirm: EmailConfirmationModel = {
       isConfirm: false,
       confirmationCode: this.uuidService.generate(),
@@ -45,7 +46,7 @@ export class UsersService {
       text: '',
       html:
              `
-                 <h1>Thank for your registration</h1>
+                 <h1>Thanks for your registration</h1>
                  <p>To finish registration please follow the link below:
                      <a href='${link}'>Завершить регистрацию</a>
                  </p>
